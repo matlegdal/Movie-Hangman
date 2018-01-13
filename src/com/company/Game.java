@@ -33,9 +33,13 @@ public class Game {
 
     public void playTurn() {
         displayGuess();
-        System.out.println("Guess the name of the movie or guess a letter.");
         System.out.println(numGuessesLeft + " guess(es) left.");
-        String guess = scanner.nextLine();
+
+        String guess = "";
+        while (guess.equals("")) {
+            System.out.println("Guess the name of the movie or guess a letter.");
+            guess = scanner.nextLine();
+        }
         checkGuess(guess);
         numGuessesLeft--;
     }
