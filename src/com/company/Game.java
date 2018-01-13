@@ -7,13 +7,14 @@ public class Game {
     private String movieToShow;
     private int numGuessesLeft = 10;
     private Scanner scanner = new Scanner(System.in);
-    public boolean hasWon = false;
+    private boolean won = false;
     private String letters = "";
 
     Game(String movieToGuess) {
         this.movieToGuess = movieToGuess;
         this.movieToShow = String.join("", Collections.nCopies(this.movieToGuess.length(), "_"));
         System.out.println("Guess a movie name of " + movieToGuess.length() + " letters.");
+        System.out.println(movieToGuess);
     }
 
     private void displayGuess() {
@@ -37,28 +38,36 @@ public class Game {
             }
 
             if (movieToGuess.contains(guess)){
-                addLetter(guess);
+                char letter = guess.charAt(0);
+                addLetter(letter);
+                System.out.println("The movie name really contains a '" + guess + "'.");
+            } else {
+                System.out.println("The movie name doesn't contain a '" + guess + "'.");
             }
         } else if (guess.equals(movieToGuess)) {
             win();
         }
     }
 
-    private void addLetter(String guess){
+    private void addLetter(char letter){
+        letters += letter;
         int len = movieToShow.length();
-        char letter = guess.charAt(0);
         movieToShow = "";
+
         for (int i = 0; i < len; i++) {
-            if (movieToGuess.charAt(i) != letter){
+            if (letters.indexOf(movieToGuess.charAt(i)) == -1){
                 movieToShow += "_";
             } else {
-                movieToShow += letter;
+                movieToShow += movieToGuess.charAt(i);
             }
         }
     }
 
     private void win(){
-        hasWon = true;
+        won = true;
     }
 
+    public boolean hasWon() {
+        return won;
+    }
 }
