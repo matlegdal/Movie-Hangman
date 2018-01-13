@@ -8,6 +8,7 @@ public class Game {
     private int numGuessesLeft = 10;
     private Scanner scanner = new Scanner(System.in);
     public boolean hasWon = false;
+    private String letters = "";
 
     Game(String movieToGuess) {
         this.movieToGuess = movieToGuess;
@@ -20,24 +21,40 @@ public class Game {
     }
 
     public void playTurn() {
-        this.displayGuess();
+        displayGuess();
         System.out.println("Guess the name of the movie or guess a letter.");
         System.out.println(numGuessesLeft + " guess(es) left.");
         String guess = scanner.nextLine();
-        this.checkGuess(guess);
+        checkGuess(guess);
         numGuessesLeft--;
     }
 
     private void checkGuess(String guess) {
         if (guess.length() == 1) {
-            this.checkLetter(guess);
+            if (letters.contains(guess)) {
+                System.out.println("You have already guessed the letter " + guess);
+                return;
+            }
+
+            if (movieToGuess.contains(guess)){
+                addLetter(guess);
+            }
         } else if (guess.equals(movieToGuess)) {
-            this.win();
+            win();
         }
     }
 
-    private void checkLetter(String guess) {
-
+    private void addLetter(String guess){
+        int len = movieToShow.length();
+        char letter = guess.charAt(0);
+        movieToShow = "";
+        for (int i = 0; i < len; i++) {
+            if (movieToGuess.charAt(i) != letter){
+                movieToShow += "_";
+            } else {
+                movieToShow += letter;
+            }
+        }
     }
 
     private void win(){
