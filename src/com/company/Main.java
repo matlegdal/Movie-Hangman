@@ -6,9 +6,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String movieToGuess = chooseMovie();
-
-        Game game = new Game(movieToGuess);
+        Game game = new Game(chooseMovie());
+        game.displayGuess();
     }
 
     private static String chooseMovie() {
