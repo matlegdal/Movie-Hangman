@@ -8,10 +8,10 @@ public class Game {
     Game(String movieToGuess) {
         this.movieToGuess = movieToGuess;
         this.movieToShow = String.join("", Collections.nCopies(this.movieToGuess.length(), "_"));
+        System.out.println("Guess a movie name of " + movieToGuess.length() + " letters.");
     }
 
     public void displayGuess() {
-        System.out.println("Guess a movie name of " + movieToGuess.length() + " letters.");
         System.out.println(movieToShow);
 
     }
