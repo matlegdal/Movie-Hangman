@@ -41,6 +41,7 @@ public class Game {
     }
 
     private void checkGuess(String guess) {
+        guess = guess.trim();
         if (guess.length() == 1) {
             if (letters.contains(guess)) {
                 System.out.println("You have already guessed the letter " + guess);
@@ -54,7 +55,7 @@ public class Game {
             } else {
                 System.out.println("The movie name doesn't contain a '" + guess + "'.");
             }
-        } else if (guess.equals(movieToGuess)) {
+        } else if (movieToGuess.equals(guess)) {
             win();
             System.out.println("Correct! You rock.");
         } else {
