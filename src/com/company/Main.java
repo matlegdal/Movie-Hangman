@@ -10,7 +10,7 @@ public class Main {
 
         if (movieToGuess != null) {
             Game game = new Game(movieToGuess);
-            game.displayGuess();
+            game.playTurn();
 
         } else {
             System.out.println("Something seems wrong with the file of movies or the code.");
