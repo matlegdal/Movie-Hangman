@@ -1,10 +1,9 @@
 package com.company;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Game {
     private String movieToGuess;
-    private String movieToShow;
+    private String movieToShow = "";
     private int numGuessesLeft = 10;
     private Scanner scanner = new Scanner(System.in);
     private boolean won = false;
@@ -12,7 +11,15 @@ public class Game {
 
     Game(String movieToGuess) {
         this.movieToGuess = movieToGuess;
-        this.movieToShow = String.join("", Collections.nCopies(this.movieToGuess.length(), "_"));
+        int len = movieToGuess.length();
+
+        for (int i = 0; i < len; i++) {
+            if (this.movieToGuess.charAt(i) == ' '){
+                movieToShow += " ";
+            } else {
+                movieToShow += "_";
+            }
+        }
         System.out.println("Guess a movie name of " + movieToGuess.length() + " letters.");
         System.out.println(movieToGuess);
     }
@@ -46,16 +53,21 @@ public class Game {
             }
         } else if (guess.equals(movieToGuess)) {
             win();
+            System.out.println("Correct! You rock.");
+        } else {
+            System.out.println("Incorrect! Try again.");
         }
     }
 
     private void addLetter(char letter){
         letters += letter;
-        int len = movieToShow.length();
+        int len = movieToGuess.length();
         movieToShow = "";
 
         for (int i = 0; i < len; i++) {
-            if (letters.indexOf(movieToGuess.charAt(i)) == -1){
+            if (movieToGuess.charAt(i) == ' '){
+                movieToShow += " ";
+            } else if (letters.indexOf(movieToGuess.charAt(i)) == -1){
                 movieToShow += "_";
             } else {
                 movieToShow += movieToGuess.charAt(i);
