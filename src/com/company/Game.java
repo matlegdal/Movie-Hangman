@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Game {
     private String movieToGuess;
-    private String movieToShow = "";
+    private String movieToShow;
     private int numGuessesLeft = 10;
     private Scanner scanner = new Scanner(System.in);
     private boolean won = false;
@@ -13,13 +13,16 @@ public class Game {
         this.movieToGuess = movieToGuess;
         int len = movieToGuess.length();
 
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < len; i++) {
-            if (this.movieToGuess.charAt(i) == ' '){
-                movieToShow += " ";
+            if (movieToGuess.charAt(i) == ' '){
+                sb.append(" ");
             } else {
-                movieToShow += "_";
+                sb.append("_");
             }
         }
+        movieToShow = sb.toString();
+
         System.out.println("Guess a movie name of " + movieToGuess.length() + " letters.");
         System.out.println(movieToGuess);
     }
@@ -62,17 +65,18 @@ public class Game {
     private void addLetter(char letter){
         letters += letter;
         int len = movieToGuess.length();
-        movieToShow = "";
+        StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < len; i++) {
             if (movieToGuess.charAt(i) == ' '){
-                movieToShow += " ";
+                sb.append(" ");
             } else if (letters.indexOf(movieToGuess.charAt(i)) == -1){
-                movieToShow += "_";
+                sb.append("_");
             } else {
-                movieToShow += movieToGuess.charAt(i);
+                sb.append(movieToGuess.charAt(i));
             }
         }
+        movieToShow = sb.toString();
     }
 
     private void win(){
