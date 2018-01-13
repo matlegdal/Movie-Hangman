@@ -6,21 +6,31 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String movieToGuess = chooseMovie();
+        while (true) {
+            String movieToGuess = chooseMovie();
 
-        if (movieToGuess != null) {
-            Game game = new Game(movieToGuess);
-            while (!game.hasWon()){
-                game.playTurn();
-                if (game.getNumGuessesLeft() < 1) {
-                    System.out.println("Game Over! The correct answer was " + movieToGuess);
+            if (movieToGuess != null) {
+                Game game = new Game(movieToGuess);
+                while (!game.hasWon()){
+                    game.playTurn();
+                    if (game.getNumGuessesLeft() < 1) {
+                        System.out.println("Game Over! The correct answer was " + movieToGuess);
+                        break;
+                    }
+                }
+
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Play again? (y/n)");
+                String res = scanner.nextLine();
+                if (!res.equals("y")) {
                     break;
                 }
-            }
 
-        } else {
-            System.out.println("Something seems wrong with the file of movies or the code.");
+            } else {
+                System.out.println("Something seems wrong with the file of movies or the code.");
+            }
         }
+
     }
 
     private static String chooseMovie() {
