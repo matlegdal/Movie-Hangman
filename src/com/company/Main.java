@@ -6,8 +6,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Game game = new Game(chooseMovie());
-        game.displayGuess();
+        String movieToGuess = chooseMovie();
+
+        if (movieToGuess != null) {
+            Game game = new Game(movieToGuess);
+            game.displayGuess();
+
+        } else {
+            System.out.println("Something seems wrong with the file of movies or the code.");
+        }
     }
 
     private static String chooseMovie() {

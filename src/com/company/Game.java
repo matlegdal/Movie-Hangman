@@ -13,6 +13,9 @@ public class Game {
 
     public void displayGuess() {
         System.out.println(movieToShow);
+    }
+
+    public void playTurn() {
 
     }
 }
