@@ -24,7 +24,7 @@ public class Game {
         movieToShow = sb.toString();
 
         System.out.println("Guess a movie name of " + movieToGuess.length() + " letters.");
-        System.out.println(movieToGuess);
+//        System.out.println(movieToGuess);
     }
 
     private void displayGuess() {
@@ -85,5 +85,9 @@ public class Game {
 
     public boolean hasWon() {
         return won;
+    }
+
+    public int getNumGuessesLeft() {
+        return numGuessesLeft;
     }
 }

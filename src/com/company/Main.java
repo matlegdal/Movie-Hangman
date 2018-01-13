@@ -12,6 +12,10 @@ public class Main {
             Game game = new Game(movieToGuess);
             while (!game.hasWon()){
                 game.playTurn();
+                if (game.getNumGuessesLeft() < 1) {
+                    System.out.println("Game Over! The correct answer was " + movieToGuess);
+                    break;
+                }
             }
 
         } else {
